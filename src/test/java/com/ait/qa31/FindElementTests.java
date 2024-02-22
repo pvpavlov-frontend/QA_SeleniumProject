@@ -8,19 +8,21 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import javax.xml.datatype.Duration;
+import java.time.Duration;
 import java.util.List;
 
 public class FindElementTests {
 
     static WebDriver driver;
     @BeforeMethod
-    public static void setUp() {
+    public void setUp() {
         driver = new ChromeDriver();
         driver.get("https://ilcarro.web.app");
 
+        //maximize browser to window size
         driver.manage().window().maximize();
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //wait for all elements on the page to load before starting test
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
     @Test
     public void findElementByTagName(){
